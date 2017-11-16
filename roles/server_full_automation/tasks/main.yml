@@ -1,0 +1,8 @@
+---
+
+- include: racadm-setup-RAID-r620.yml
+  when: '(raid_force | bool) and (model is defined and model == 620)'
+- include: racadm-setup-RAID-r730.yml
+  when: '(raid_force | bool) and (model is defined and model == 730)'
+- include: racadm-setup-iDRAC-settings.yml
+- include: racadm-setup-BIOS.yml

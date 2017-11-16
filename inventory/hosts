@@ -1,0 +1,65 @@
+[all:children]
+idrac_hosts
+#r620_servers
+#r730_servers
+#idrac_syslog
+
+#[r620_servers]
+#10.231.9.46 idrac_racname=r60208c03-bmc model=620
+
+#[r730_servers]
+#10.231.9.40 idrac_racname=r60212c12-bmc model=730
+
+[idrac_hosts]
+#[r620_servers]
+#[r730_servers]
+#10.7.240.200 test_value=idrac
+#10.7.240.201 test_value=idrac 
+#10.7.20.150 test_value=idrac 
+r60208c03-bmc ansible_host=10.231.9.46 idrac_racname=r60208c03-bmc model=620
+r60208c04-bmc ansible_host=10.231.9.47 idrac_racname=r60208c03-bmc model=620
+r60212c11-bmc ansible_host=10.231.9.39 idrac_racname=r60212c11-bmc model=730
+r60212c12-bmc ansible_host=10.231.9.40 idrac_racname=r60212c12-bmc model=730
+r60212c13-bmc ansible_host=10.231.9.41 idrac_racname=r60212c13-bmc model=730
+r60210c14-bmc ansible_host=10.231.9.28 idrac_racname=r60210c14-bmc model=630
+r60212c14-bmc ansible_host=10.231.9.42 idrac_racname=r60212c14-bmc model=630
+#10.231.9.39 idrac_racname=r60212c11-bmc model=730
+#10.231.9.28 idrac_racname=r60210c14-bmc
+#10.231.9.42 idrac_racname=r60212c14-bmc
+#10.231.9.66
+#10.231.9.44
+#10.231.9.45
+
+#[r620_servers:vars]
+[idrac_hosts:vars]
+ansible_ssh_pass=melody
+ansible_ssh_user=root
+idrac_dns1=10.231.0.101
+idrac_dns2=10.231.0.103
+idrac_gateway=10.231.9.1
+idrac_netmask=255.255.255.0
+idrac_domainname=encore-oam.com
+raid_force=false
+catalog_http_share=10.231.7.155/DellRepo/072017
+mgmt_vlanid=104
+mgmt_gateway=10.7.20.1
+mgmt_netmask=255.255.255.0
+
+[idrac_syslog]
+10.231.9.11
+10.231.9.12
+
+[idrac_syslog:vars]
+idrac_syslog_server1=log.encore-oam.com
+ansible_ssh_pass=****
+ansible_ssh_user=root
+
+
+[vmcreate:children]
+vcentervms
+
+[vcentervms]
+#vm01 ansible_connection=local ansible_python_interpreter=/usr/bin/python
+
+[local]
+localhost ansible_connection=local

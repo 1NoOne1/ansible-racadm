@@ -5,6 +5,7 @@ The System/Host preparation involves configuring iDrac settings, Bios settings, 
 We automated this process using `Ansible RAW` module and the `Local iDrac RACADM` commndline tool. we also use HTTP repository share from which we will update the recommended updates and these updates were created in the form a catalog using Dell Repository Manager.
 This will update Firmware/Device Drivers, change/modify iDrac/Bios Settings using Racadm command line tool on Dell PowerEdge 620 and 730xd models. We will connect to the local racadm which resides in iDrac and execute the required commands using the Ansible RAW module.    
 ### Prerequisites
+> Make sure you completed this setup - [Initial iDrac Configuration](https://github.com/misteryiz/Initial-iDrac-configuration), before proceeding further.
 1. An Existing DNS server should have updated with DNS records for all the iDrac hosts. 
 2. Need a system/VM running with linux OS.
  ``` 

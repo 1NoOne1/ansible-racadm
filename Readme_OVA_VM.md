@@ -47,19 +47,21 @@ ONBOOT=yes
 ```
 ```
 If the VM needs any additional network adapters, then 
-please do add them and then change the values appropriately. 
+please do add them and then change the values appropriately at the OS level. 
 ```
-•	On the Terminal, type: `systemctl restart network`. After a brief moment, the network should be up and running. If you see any error messages, please troubleshoot accordingly. 
-•	Enter the DNS server details using: `vi /etc/resolv.conf` . save and exit.
-•	If hostname needs to be changed, change it: `hostnamectl set-hostname “hostname”`. Please edit the hosts file using `vi /etc/hosts` and enter the details:
+* On the Terminal, type: `systemctl restart network`. After a brief moment, the network should be up and running. If you see any error messages, please troubleshoot accordingly. If you want, use `service network restart` (doesn't matter).
+* Enter the DNS server details using: `vi /etc/resolv.conf` . save and exit `:wq!`.
+* If hostname needs to be changed, change it using : `hostnamectl set-hostname “USE YOUR HOSTNAME PATTERN”`. Please edit the hosts file using `vi /etc/hosts` and enter the details:
 ```
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 <IP ADDRESS> <HOSTNAME.DOMAIN> <HOSTNAME>
 ``` 
-•	On the Terminal, type: `systemctl restart network`. 
-o	Check whether, `hostname` changed.
-o	Can access internet, `ping google.com`
-•	Access this host from your local machine, ping it and check whether you can access IP/Hostname. If you can’t check the DNS or troubleshoot for any further issues.
+* On the Terminal, type: `systemctl restart network` to restart the network.
+* `Logout` and again log into the system.
+
+* Check whether, `hostname` got changed to the name that you set.
+* Check whether, VM can access internet, `ping google.com`
+* Access this host from your local machine, ping it and check whether you can access IP/Hostname. If you can’t check the DNS or troubleshoot for any further issues.
 •	**Change user : `ansible` password using `passwd ansible`**. Current password for user `ansible` is `ChangeMe1!`.
 ####Assuming that everything went smooth and we can access the VM from outside the vCenter using Putty connection. Please do the following for the Host-Prep using ansible and racadm.

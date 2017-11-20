@@ -9,14 +9,16 @@ that is required for ansible program under user `ansible` home directory `/home/
 * Open vCenter Clieent Application, Enter the credntials and into it.
 * Click on `File -> Deploy OVF Template`. In the Deploy OVF Template dilaog, choose the appropriate `Source file, Name of the VM and 
 Host/Cluster/Resource pool` on which the VM should be deployed.
-* Once the template is deployed, `Go to VMs and Templates -> to the appropriate location of the VM 
-(selected in the above step)`, `Right click on the VM -> Edit Settings`. This is to attach the correct NIC interface 
+* Once the template is deployed, 
+  * `Go to VMs and Templates -> to the appropriate location of the VM (selected in the above step)`, 
+  * `Right click on the VM -> Edit Settings`. This is to attach the correct NIC interface 
 so that we can assign an IP address to access it. 
-* Click on the `Network Adapter1 -> On the Right side panel`; Under the `Network Connection`, Please select 
+  * Click on the `Network Adapter1 -> On the Right side panel`; Under the `Network Connection`, Please select 
 an appropriate host network that exists in your network.
 * Once you assign the correct Network Adapter, `Right click on the VM -> Power -> Power On`.
-* Once the VM is up and Running, Open Console (`Right click on VM -> Open Console`) and log in using the credentials. 
-`user: root  pass: ChangeMe1!`
+* Once the VM is up and Running: 
+  * Open Console (`Right click on VM -> Open Console`) and 
+  * Log in using the credentials. `user: root  pass: ChangeMe1!`
 **`[[ Please change the password immediately. ]]`**
 * On terminal, Enter `ip addr` and note down the Ethernet device. Should see something like this:
 ```
@@ -52,7 +54,9 @@ please do add them and then change the values appropriately at the OS level.
 
 * On the Terminal, type: `systemctl restart network`. After a brief moment, the network should be up and running. If you see any error messages, please troubleshoot accordingly. If you want, use `service network restart` (doesn't matter).
 * Enter the DNS server details using: `vi /etc/resolv.conf` . save and exit `:wq!`.
-* If hostname needs to be changed, change it using : `hostnamectl set-hostname “USE YOUR HOSTNAME PATTERN”`. Please edit the hosts file using `vi /etc/hosts` and enter the details:
+* If hostname needs to be changed, 
+  * Change it using : `hostnamectl set-hostname “USE YOUR HOSTNAME PATTERN”`. 
+  * For FQDN: Please edit the hosts file using `vi /etc/hosts` and enter the details:
 ```
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
@@ -60,6 +64,8 @@ please do add them and then change the values appropriately at the OS level.
 ``` 
 * On the Terminal, type: `systemctl restart network` to restart the network.
 * `Logout` and again log into the system.
+
+### Please Check the Following items:
 
 * Check whether, `hostname` got changed to the name that you set.
 * Check whether, VM can access internet, `ping google.com`

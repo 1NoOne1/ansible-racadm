@@ -67,9 +67,16 @@ please do add them and then change the values appropriately at the OS level.
 
 ### Please Check the Following items:
 
-* Check whether, `hostname` got changed to the name that you set.
+* Check whether, `hostname` got changed to the name that you set. Hostname FQDN using `hostname -f`.
 * Check whether, VM can access internet, `ping google.com`
 * Check whether, `VM can be accessed from your local machine, ping it and check whether you can access IP/Hostname`. If you can’t check the DNS or troubleshoot for any further issues.
-* **Change user : `ansible` password using `passwd ansible`.** Current password for user `ansible` is `ChangeMe1!`.
+* `HTTP` service should be up and running:
+   * Check the status using: `systemctl status httpd`, **if it's not running**, then 
+   * using: `systemctl start httpd` to start the service.
+   * Access http://<>IPADDRESS of the VM> on any web browser from your local machine. You should see ATT Labs welcome page :relaxed:.
+* `NFS server` service should be up and running:
+   * Check the status using: `systemctl status nfs-server`, **if it's not running**, then 
+   * using: `systemctl start nfs-server` to start the service.   
+* **Change user : `ansible` password  by typing `passwd ansible`.** Current password for user `ansible` is `ChangeMe1!`.**
 
 ### Assuming that everything went smooth and we can access the VM from outside the vCenter using Putty connection. Please do the following for the Host-Prep using ansible and racadm.

@@ -1,0 +1,169 @@
+[all:children]
+r620_servers
+r730_servers
+mgmt_servers
+bootstrap_host
+
+[bootstrap_host]
+r60210c14-bmc ansible_host=10.231.9.28 idrac_racname=r60210c14-bmc model=630
+
+[bootstrap_host:vars]
+ansible_ssh_pass=melody
+ansible_ssh_user=root
+bootstrap_esxi_iso=/home/ansible/bootstrap_esxi.iso
+
+[mgmt_servers]
+r01c01-ipmi  ansible_host=10.231.9.14  idrac_racname=r01c01-ipmi  model=620
+r01c02-ipmi  ansible_host=10.231.9.15  idrac_racname=r01c02-ipmi  model=620
+r01c03-ipmi  ansible_host=10.231.9.16  idrac_racname=r01c03-ipmi  model=620
+r02c01-ipmi  ansible_host=10.231.9.17  idrac_racname=r02c01-ipmi  model=620
+r02c02-ipmi  ansible_host=10.231.9.18  idrac_racname=r02c02-ipmi  model=620
+r02c03-ipmi  ansible_host=10.231.9.19  idrac_racname=r02c03-ipmi  model=620
+
+[mgmt_servers:vars]
+ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_user=root
+idrac_dns1=10.231.0.101
+idrac_dns2=10.231.0.103
+idrac_gateway=10.231.9.1
+idrac_netmask=255.255.255.0
+idrac_domainname=encore-oam.com
+raid_force=false
+
+[r620_servers:children]
+rack3_r620
+rack4_r620
+rack5_r620
+rack6_r620
+rack7_r620
+
+[r730_servers]:children
+rack3_r730
+rack4_r730
+rack5_r730
+
+[r620_servers:vars]
+ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_user=root
+idrac_dns1=10.231.0.101
+idrac_dns2=10.231.0.103
+idrac_gateway=10.231.9.1
+idrac_netmask=255.255.255.0
+idrac_domainname=encore-oam.com
+raid_force=false
+
+[r730_servers:vars]
+ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_user=root
+idrac_dns1=10.231.0.101
+idrac_dns2=10.231.0.103
+idrac_gateway=10.231.9.1
+idrac_netmask=255.255.255.0
+idrac_domainname=encore-oam.com
+raid_force=true
+
+[rack3_r620]
+r03c01-ipmi  ansible_host=10.231.9.20  idrac_racname=r03c01-ipmi  model=620
+r03c02-ipmi  ansible_host=10.231.9.21  idrac_racname=r03c02-ipmi  model=620
+r03c03-ipmi  ansible_host=10.231.9.22  idrac_racname=r03c03-ipmi  model=620
+r03c04-ipmi  ansible_host=10.231.9.23  idrac_racname=r03c04-ipmi  model=620
+r03c05-ipmi  ansible_host=10.231.9.24  idrac_racname=r03c05-ipmi  model=620
+r03c06-ipmi  ansible_host=10.231.9.25  idrac_racname=r03c06-ipmi  model=620
+r03c07-ipmi  ansible_host=10.231.9.26  idrac_racname=r03c07-ipmi  model=620
+r03c08-ipmi  ansible_host=10.231.9.27  idrac_racname=r03c08-ipmi  model=620
+r03c09-ipmi  ansible_host=10.231.9.28  idrac_racname=r03c09-ipmi  model=620
+r03c10-ipmi  ansible_host=10.231.9.29  idrac_racname=r03c10-ipmi  model=620
+r03c11-ipmi  ansible_host=10.231.9.30  idrac_racname=r03c11-ipmi  model=620
+r03c12-ipmi  ansible_host=10.231.9.31  idrac_racname=r03c12-ipmi  model=620
+r03c13-ipmi  ansible_host=10.231.9.32  idrac_racname=r03c13-ipmi  model=620
+r03c14-ipmi  ansible_host=10.231.9.33  idrac_racname=r03c14-ipmi  model=620
+r03c15-ipmi  ansible_host=10.231.9.34  idrac_racname=r03c15-ipmi  model=620
+r03c16-ipmi  ansible_host=10.231.9.35  idrac_racname=r03c16-ipmi  model=620
+     
+[rack3_r730] 
+r03c17-ipmi  ansible_host=10.231.9.36  idrac_racname=r03c17-ipmi  model=730
+r03c18-ipmi  ansible_host=10.231.9.37  idrac_racname=r03c18-ipmi  model=730
+r03c19-ipmi  ansible_host=10.231.9.38  idrac_racname=r03c19-ipmi  model=730
+r03c20-ipmi  ansible_host=10.231.9.39  idrac_racname=r03c20-ipmi  model=730
+      
+[rack4_r620]
+r04c01-ipmi  ansible_host=10.231.9.40  idrac_racname=r04c01-ipmi  model=620
+r04c02-ipmi  ansible_host=10.231.9.41  idrac_racname=r04c02-ipmi  model=620
+r04c03-ipmi  ansible_host=10.231.9.42  idrac_racname=r04c03-ipmi  model=620
+r04c04-ipmi  ansible_host=10.231.9.43  idrac_racname=r04c04-ipmi  model=620
+r04c05-ipmi  ansible_host=10.231.9.44  idrac_racname=r04c05-ipmi  model=620
+r04c06-ipmi  ansible_host=10.231.9.45  idrac_racname=r04c06-ipmi  model=620
+r04c07-ipmi  ansible_host=10.231.9.46  idrac_racname=r04c07-ipmi  model=620
+r04c08-ipmi  ansible_host=10.231.9.47  idrac_racname=r04c08-ipmi  model=620
+r04c09-ipmi  ansible_host=10.231.9.48  idrac_racname=r04c09-ipmi  model=620
+r04c10-ipmi  ansible_host=10.231.9.49  idrac_racname=r04c10-ipmi  model=620
+r04c11-ipmi  ansible_host=10.231.9.50  idrac_racname=r04c11-ipmi  model=620
+r04c12-ipmi  ansible_host=10.231.9.51  idrac_racname=r04c12-ipmi  model=620
+r04c13-ipmi  ansible_host=10.231.9.52  idrac_racname=r04c13-ipmi  model=620
+r04c14-ipmi  ansible_host=10.231.9.53  idrac_racname=r04c14-ipmi  model=620
+r04c15-ipmi  ansible_host=10.231.9.54  idrac_racname=r04c15-ipmi  model=620
+r04c16-ipmi  ansible_host=10.231.9.55  idrac_racname=r04c16-ipmi  model=620
+      
+[rack4_r730]
+r04c17-ipmi  ansible_host=10.231.9.56  idrac_racname=r04c17-ipmi  model=730
+r04c18-ipmi  ansible_host=10.231.9.57  idrac_racname=r04c18-ipmi  model=730
+r04c19-ipmi  ansible_host=10.231.9.58  idrac_racname=r04c19-ipmi  model=730
+     
+[rack5_r620] 
+r05c01-ipmi  ansible_host=10.231.9.59  idrac_racname=r05c01-ipmi  model=620
+r05c02-ipmi  ansible_host=10.231.9.60  idrac_racname=r05c02-ipmi  model=620
+r05c03-ipmi  ansible_host=10.231.9.61  idrac_racname=r05c03-ipmi  model=620
+r05c04-ipmi  ansible_host=10.231.9.62  idrac_racname=r05c04-ipmi  model=620
+r05c05-ipmi  ansible_host=10.231.9.63  idrac_racname=r05c05-ipmi  model=620
+r05c06-ipmi  ansible_host=10.231.9.64  idrac_racname=r05c06-ipmi  model=620
+r05c07-ipmi  ansible_host=10.231.9.65  idrac_racname=r05c07-ipmi  model=620
+r05c08-ipmi  ansible_host=10.231.9.66  idrac_racname=r05c08-ipmi  model=620
+r05c09-ipmi  ansible_host=10.231.9.67  idrac_racname=r05c09-ipmi  model=620
+r05c10-ipmi  ansible_host=10.231.9.68  idrac_racname=r05c10-ipmi  model=620
+r05c11-ipmi  ansible_host=10.231.9.69  idrac_racname=r05c11-ipmi  model=620
+r05c12-ipmi  ansible_host=10.231.9.70  idrac_racname=r05c12-ipmi  model=620
+r05c13-ipmi  ansible_host=10.231.9.71  idrac_racname=r05c13-ipmi  model=620
+r05c14-ipmi  ansible_host=10.231.9.72  idrac_racname=r05c14-ipmi  model=620
+r05c15-ipmi  ansible_host=10.231.9.73  idrac_racname=r05c15-ipmi  model=620
+r05c16-ipmi  ansible_host=10.231.9.74  idrac_racname=r05c16-ipmi  model=620
+      
+[rack5_r730]
+r05c17-ipmi  ansible_host=10.231.9.75  idrac_racname=r05c17-ipmi  model=730
+r05c18-ipmi  ansible_host=10.231.9.76  idrac_racname=r05c18-ipmi  model=730
+r05c19-ipmi  ansible_host=10.231.9.77  idrac_racname=r05c19-ipmi  model=730
+     
+[rack6_r620] 
+r06c01-ipmi  ansible_host=10.231.9.78  idrac_racname=r06c01-ipmi  model=620
+r06c02-ipmi  ansible_host=10.231.9.79  idrac_racname=r06c02-ipmi  model=620
+r06c03-ipmi  ansible_host=10.231.9.80  idrac_racname=r06c03-ipmi  model=620
+r06c04-ipmi  ansible_host=10.231.9.81  idrac_racname=r06c04-ipmi  model=620
+r06c05-ipmi  ansible_host=10.231.9.82  idrac_racname=r06c05-ipmi  model=620
+r06c06-ipmi  ansible_host=10.231.9.83  idrac_racname=r06c06-ipmi  model=620
+r06c07-ipmi  ansible_host=10.231.9.84  idrac_racname=r06c07-ipmi  model=620
+r06c08-ipmi  ansible_host=10.231.9.85  idrac_racname=r06c08-ipmi  model=620
+r06c09-ipmi  ansible_host=10.231.9.86  idrac_racname=r06c09-ipmi  model=620
+r06c10-ipmi  ansible_host=10.231.9.87  idrac_racname=r06c10-ipmi  model=620
+r06c11-ipmi  ansible_host=10.231.9.88  idrac_racname=r06c11-ipmi  model=620
+r06c12-ipmi  ansible_host=10.231.9.89  idrac_racname=r06c12-ipmi  model=620
+r06c13-ipmi  ansible_host=10.231.9.90  idrac_racname=r06c13-ipmi  model=620
+r06c14-ipmi  ansible_host=10.231.9.91  idrac_racname=r06c14-ipmi  model=620
+r06c15-ipmi  ansible_host=10.231.9.92  idrac_racname=r06c15-ipmi  model=620
+r06c16-ipmi  ansible_host=10.231.9.93  idrac_racname=r06c16-ipmi  model=620
+      
+[rack7_r620]
+r07c01-ipmi  ansible_host=10.231.9.94  idrac_racname=r01c01-ipmi  model=620
+r07c02-ipmi  ansible_host=10.231.9.95  idrac_racname=r01c02-ipmi  model=620
+r07c03-ipmi  ansible_host=10.231.9.96  idrac_racname=r01c03-ipmi  model=620
+r07c04-ipmi  ansible_host=10.231.9.97  idrac_racname=r01c01-ipmi  model=620
+r07c05-ipmi  ansible_host=10.231.9.98  idrac_racname=r01c02-ipmi  model=620
+r07c06-ipmi  ansible_host=10.231.9.99  idrac_racname=r01c03-ipmi  model=620
+r07c07-ipmi  ansible_host=10.231.9.100  idrac_racname=r01c01-ipmi  model=620
+r07c08-ipmi  ansible_host=10.231.9.101  idrac_racname=r01c02-ipmi  model=620
+r07c09-ipmi  ansible_host=10.231.9.102  idrac_racname=r01c03-ipmi  model=620
+r07c10-ipmi  ansible_host=10.231.9.103  idrac_racname=r01c01-ipmi  model=620
+r07c11-ipmi  ansible_host=10.231.9.104  idrac_racname=r01c02-ipmi  model=620
+r07c12-ipmi  ansible_host=10.231.9.105  idrac_racname=r01c03-ipmi  model=620
+r07c13-ipmi  ansible_host=10.231.9.106  idrac_racname=r01c01-ipmi  model=620
+r07c14-ipmi  ansible_host=10.231.9.107  idrac_racname=r01c02-ipmi  model=620
+r07c15-ipmi  ansible_host=10.231.9.108  idrac_racname=r01c03-ipmi  model=620
+r07c16-ipmi  ansible_host=10.231.9.109  idrac_racname=r01c01-ipmi  model=620

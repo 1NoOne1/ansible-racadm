@@ -29,6 +29,7 @@ idrac_gateway=10.231.9.1
 idrac_netmask=255.255.255.0
 idrac_domainname=encore-oam.com
 raid_force=false
+catalog_http_share=<IP ADDRESS of THE VM>/Dell_Repo/R620_R730_072017
 
 [r620_servers:children]
 rack3_r620
@@ -51,6 +52,7 @@ idrac_gateway=10.231.9.1
 idrac_netmask=255.255.255.0
 idrac_domainname=encore-oam.com
 raid_force=false
+catalog_http_share=<IP ADDRESS of THE VM>/Dell_Repo/R620_R730_072017
 
 [r730_servers:vars]
 ansible_ssh_pass=calvin    #default password for dell servers
@@ -61,6 +63,7 @@ idrac_gateway=10.231.9.1
 idrac_netmask=255.255.255.0
 idrac_domainname=encore-oam.com
 raid_force=true
+catalog_http_share=<IP ADDRESS of THE VM>/Dell_Repo/R620_R730_072017
 
 [rack3_r620]
 r03c01-ipmi  ansible_host=10.231.9.20  idrac_racname=r03c01-ipmi  model=620

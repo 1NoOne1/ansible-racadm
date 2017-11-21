@@ -88,7 +88,8 @@ please do add them and then change the values appropriately at the OS level.
 * The first file we are going to edit is `inventory/hosts_prod`:
   * `vi /home/ansible/inventory/hosts_prod` : This is the file which holds all the inventory information of the servers in all the racks. It is divided into 620, 730 server groups and further divided into sub groups based on the racks.
   * Please enter the information in the following order : `<DNS NAME FOR IDRAC> ansible_host=<IP ADDRESS of idrachost1> idrac_racname=<idrachost1 name from DNS> model=<idrachost1 SERVER MODEL>`.
-**To Run on rack3 620 servers**
-**To Run on rack3 730 servers**
-**To Run on Management servers**
+  
+* **To Run on RACK3 R620 servers**
+* **To Run on RACK4 R730 servers**
+* **To Run on RACK1 & RACK2 Management servers**
   

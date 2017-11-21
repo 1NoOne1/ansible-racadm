@@ -1,6 +1,6 @@
 ### Deploy a CentOS VM from the OVA template in vCenter: 
 
-> The OVA template that we provided will have all the required and necessary components in place. Please feel free to install 
+> The OVA template that we provided will have all the required and necessary packages/components in place. Please feel free to install 
 any package that is not available on the template. We created a user called `ansible` and placed the required directory structure 
 that is required for ansible program under user `ansible` home directory `/home/ansible/`. 
 
@@ -80,3 +80,12 @@ please do add them and then change the values appropriately at the OS level.
 * **Change user : `ansible` password  by typing `passwd ansible`.** Current password for user `ansible` is `ChangeMe1!`.**
 
 ### Assuming that everything went smooth and we can access the VM from outside the vCenter using Putty connection. Please do the following for the Host-Prep using ansible and racadm.
+
+**Please Download all these files and places them under the `/home/ansible` directory with the same exact directory structure. **
+* Once you Logged into the user as `root`, check the `/etc/sudoers` file. If anything needs to be changed, please do so.
+* Switch user to ansible using `su - ansible`. Currently user `ansible` is set as `ansible ALL=(ALL) NOPASSWD: ALL`. Change it, if you want to be prompted for each time when `sudo` is used.
+* Make sure we are in the user `ansible` home directory. `/home/ansible`
+* The first file we are going to edit is `inventory/hosts_prod`:
+  * `vi /home/ansible/inventory/hosts_prod` : This is the file which holds all the inventory information of the servers in all the racks. It is divided into 620, 730 server groups and further divided into sub groups based on the racks.
+  * Please enter the information in the following order : `<DNS NAME FOR IDRAC> ansible_host=<IP ADDRESS of idrachost1> idrac_racname=<idrachost1 name from DNS> model=<idrachost1 SERVER MODEL>`.
+  

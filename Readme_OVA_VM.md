@@ -1,10 +1,10 @@
-### Deploy a CentOS VM from the OVA template in vCenter: 
+## Deploy a CentOS VM from the OVA template in vCenter: 
 
 > The OVA template that we provided will have all the required and necessary packages/components in place. Please feel free to install 
 any package that is not available on the template. We created a user called `ansible` and placed the required directory structure 
 that is required for ansible program under user `ansible` home directory `/home/ansible/`. 
 
-#### Setup the VM in vCenter using OVF Template:
+### Setup the VM in vCenter using OVF Template:
 **If you are using stand-alone vSphere Client application, we can deploy VM as follows:**
 * Open vCenter Clieent Application, Enter the credntials and into it.
 * Click on `File -> Deploy OVF Template`. In the Deploy OVF Template dilaog, choose the appropriate `Source file, Name of the VM and 
@@ -94,6 +94,8 @@ please do add them and then change the values appropriately at the OS level.
 
 **Once we are done with updating the `../inventory/hosts_prod/`, we are ready to execute the playbooks on the hosts. [Make sure you can ping them from the deployed VM ].**
 
+## How to Run the Playbooks
+
 * **To Run on RACK3 R620 servers ::** 
 
 ```console
@@ -128,6 +130,7 @@ hosts and unreachable means ansible unable to SSH into that host.)
 [ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/mgmt_r620_deploy_server_role.yml 
 ``` 
 
+### Example Runs of the Playbooks
 
 **Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` rack12_r620`**
 
@@ -182,3 +185,64 @@ r60212c3-bmc               : ok=2    changed=1    unreachable=0    failed=0
 r60212c4-bmc               : ok=2    changed=1    unreachable=0    failed=0
 r60212c5-bmc               : ok=2    changed=1    unreachable=0    failed=0
 ```
+
+**Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` rack10_r730`**
+* The Password is wrong here (intentionally made playbook to fail).
+
+```yaml
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts1 playbooks/racadm_getsysinfo.yml -l rack10_r730
+
+PLAY [get sys info.] ****************************************************************************************************************************************************************************************************************
+
+TASK [get sys info] *****************************************************************************************************************************************************************************************************************
+fatal: [r60210c12-bmc]: FAILED! => {"changed": true, "failed": true, "rc": 5, "stderr": "Permission denied, please try again.\r\n", "stdout": "", "stdout_lines": []}
+fatal: [r60210c13-bmc]: FAILED! => {"changed": true, "failed": true, "rc": 5, "stderr": "Permission denied, please try again.\r\n", "stdout": "", "stdout_lines": []}
+fatal: [r60210c11-bmc]: FAILED! => {"changed": true, "failed": true, "rc": 5, "stderr": "Permission denied, please try again.\r\n", "stdout": "", "stdout_lines": []}
+        to retry, use: --limit @/home/ansible/playbooks/racadm_getsysinfo.retry
+
+PLAY RECAP **************************************************************************************************************************************************************************************************************************
+r60210c11-bmc              : ok=0    changed=0    unreachable=0    failed=1
+r60210c12-bmc              : ok=0    changed=0    unreachable=0    failed=1
+r60210c13-bmc              : ok=0    changed=0    unreachable=0    failed=1
+
+```
+**Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` mgmt_servers`**
+* Some of them are `unreachable` and others were successfull in executing the task.
+```terminal
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts1 playbooks/racadm_getsysinfo.yml
+
+PLAY [get sys info.] ****************************************************************************************************************************************************************************************************************
+
+TASK [get sys info] *****************************************************************************************************************************************************************************************************************
+changed: [r02c01-bmc]
+changed: [r01c03-bmc]
+fatal: [r01c02-bmc]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.231.9.150 port 22: Connection timed out\r\n", "unreachable": true}
+fatal: [r01c01-bmc]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.231.9.140 port 22: Connection timed out\r\n", "unreachable": true}
+fatal: [r02c02-bmc]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.231.9.180 port 22: Connection timed out\r\n", "unreachable": true}
+fatal: [r02c03-bmc]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.231.9.190 port 22: Connection timed out\r\n", "unreachable": true}
+
+TASK [debug] ************************************************************************************************************************************************************************************************************************
+ok: [r01c03-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.16"
+    ]
+}
+ok: [r02c01-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.17"
+    ]
+}
+        to retry, use: --limit @/home/ansible/playbooks/racadm_getsysinfo.retry
+
+PLAY RECAP **************************************************************************************************************************************************************************************************************************
+r01c01-bmc                : ok=0    changed=0    unreachable=1    failed=0
+r01c02-bmc                : ok=0    changed=0    unreachable=1    failed=0
+r01c03-bmc                : ok=2    changed=1    unreachable=0    failed=0
+r02c01-bmc                : ok=2    changed=1    unreachable=0    failed=0
+r02c02-bmc                : ok=0    changed=0    unreachable=1    failed=0
+r02c03-bmc                : ok=0    changed=0    unreachable=1    failed=0
+
+```
+

@@ -208,7 +208,7 @@ r60210c13-bmc              : ok=0    changed=0    unreachable=0    failed=1
 ```
 **Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` mgmt_servers`**
 * Some of them are `unreachable` and others were successfull in executing the task.
-```terminal
+```yaml
 [ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts1 playbooks/racadm_getsysinfo.yml
 
 PLAY [get sys info.] ****************************************************************************************************************************************************************************************************************

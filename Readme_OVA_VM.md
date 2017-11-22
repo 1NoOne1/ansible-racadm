@@ -95,11 +95,13 @@ please do add them and then change the values appropriately at the OS level.
 **Once we are done with updating the `../inventory/hosts_prod/`, we are ready to execute the playbooks on the hosts. [Make sure you can ping them from the deployed VM ].**
 
 * **To Run on RACK3 R620 servers ::** 
-```console
 
-[Assuming that you are in the user ansible home directory]
+```[Assuming that you are in the user ansible home directory]
 
 [ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack3_r620
+```
+
+```console
 -i  -> for the hosts inventory information file.
 -l -> to limit the playbook to run only on the mentioned host group.
 

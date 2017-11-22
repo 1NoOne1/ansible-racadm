@@ -112,6 +112,21 @@ After you run the playbook on hostgroup “rack3_r620”, you will see the Play 
 run by ansible along with the tasks and once is finished it will list the play recap 
 status about the hosts. (ok means success, failed means issue in running a task on that 
 hosts and unreachable means ansible unable to SSH into that host.) 
+[Please see below examples for more info.]
+```
+```yaml
+# [To RUN on RACK4 R620 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack4_r620
+
+# [To RUN on RACK5 R620 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack5_r620
+
+# [To RUN on RACK6 R620 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack6_r620
+
+# [To RUN on RACK7 R620 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack7_r620
+
 ```
 
 * **To Run on RACK4 R730 servers ::**
@@ -121,7 +136,14 @@ hosts and unreachable means ansible unable to SSH into that host.)
 
 [ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/r730_deploy_server_role.yml -l rack4_r730
 ```
+```yaml
+# [To RUN on RACK5 R730 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r730_deploy_server_role.yml -l rack5_r730
 
+# [To RUN on RACK6 R730 servers]
+ansible-playbook -i inventory/hosts_prod playbooks/r730_deploy_server_role.yml -l rack6_r730
+
+```
 * **To Run on RACK1 & RACK2 Management servers ::** [We don't have to limit to any group here because, we defined rack1 and rack2 as a `mgmt_servers` group which directly holds all the required host information. no sub-groups defined in this case]
 
 ```console

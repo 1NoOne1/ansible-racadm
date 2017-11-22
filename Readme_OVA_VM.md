@@ -18,7 +18,7 @@ an appropriate host network that exists in your network.
 * Once you assign the correct Network Adapter, `Right click on the VM -> Power -> Power On`.
 * Once the VM is up and Running: 
   * Open Console (`Right click on VM -> Open Console`) and 
-  * Log in using the credentials. `user: root  pass: ChangeMe1!`
+  * Log in using the credentials. `user: root` and `password: ChangeMe1!`
 **`[[ Please change the password immediately. ]]`**
 * On terminal, Enter `ip addr` and note down the Ethernet device. Should see something like this:
 ```
@@ -77,11 +77,11 @@ please do add them and then change the values appropriately at the OS level.
 * `NFS server` service should be up and running:
    * Check the status using: `systemctl status nfs-server`, **if it's not running**, then 
    * using: `systemctl start nfs-server` to start the service.   
-* **Change user : `ansible` password  by typing `passwd ansible`.** Current password for user `ansible` is `ChangeMe1!`.**
+* **Change user : `ansible` password  by typing `passwd ansible`.** Current password for user `ansible` is `ChangeMe1!`.
 
 ### Assuming that everything went smooth and we can access the VM from outside the vCenter using Putty connection. Please do the following for the Host-Prep using ansible and racadm.
 
-**Please Download all these files and places them under the `/home/ansible` directory with the same exact directory structure.**
+**Please Download all these files and place them under the `/home/ansible` directory with the same exact directory structure.**
 * Once you Logged into the user as `root`, check the `/etc/sudoers` file. If anything needs to be changed, please do so.
 * Switch user to ansible using `su - ansible`. Currently user `ansible` is set as `ansible ALL=(ALL) NOPASSWD: ALL`. Change it, if you want to be prompted for each time when `sudo` is used.
 * Make sure we are in the user `ansible` home directory. `/home/ansible`

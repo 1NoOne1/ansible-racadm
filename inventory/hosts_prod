@@ -21,7 +21,7 @@ r02c02-ipmi  ansible_host=10.231.9.18  idrac_racname=r02c02-ipmi  model=620
 r02c03-ipmi  ansible_host=10.231.9.19  idrac_racname=r02c03-ipmi  model=620
 
 [mgmt_servers:vars]
-ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_pass=calvin<This is default password for dell servers, change and remove the text between agnle brackets>
 ansible_ssh_user=root
 idrac_dns1=10.231.0.101
 idrac_dns2=10.231.0.103
@@ -44,7 +44,7 @@ rack4_r730
 rack5_r730
 
 [r620_servers:vars]
-ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_pass=calvin<This is default password for dell servers, change and remove the text between agnle brackets>
 ansible_ssh_user=root
 idrac_dns1=10.231.0.101
 idrac_dns2=10.231.0.103
@@ -55,7 +55,7 @@ raid_force=false
 catalog_http_share=<IP ADDRESS of THE VM>/Dell_Repo/R620_R730_072017
 
 [r730_servers:vars]
-ansible_ssh_pass=calvin    #default password for dell servers
+ansible_ssh_pass=calvin<This is default password for dell servers, change and remove the text between agnle brackets>
 ansible_ssh_user=root
 idrac_dns1=10.231.0.101
 idrac_dns2=10.231.0.103

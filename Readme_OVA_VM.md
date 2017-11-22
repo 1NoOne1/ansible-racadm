@@ -96,7 +96,8 @@ please do add them and then change the values appropriately at the OS level.
 
 * **To Run on RACK3 R620 servers ::** 
 
-```[Assuming that you are in the user ansible home directory]
+```console
+[Assuming that you are in the user ansible home directory]
 
 [ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack3_r620
 ```
@@ -110,6 +111,23 @@ run by ansible along with the tasks and once is finished it will list the play r
 status about the hosts. (ok means success, failed means issue in running a task on that 
 hosts and unreachable means ansible unable to SSH into that host.) 
 ```
+
+* **To Run on RACK4 R730 servers ::**
+
+```console
+[Assuming that you are in the user ansible home directory]
+
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/r730_deploy_server_role.yml -l rack4_r730
+```
+
+* **To Run on RACK1 & RACK2 Management servers ::** [We don't have to limit to any group here because, we defined rack1 and rack2 as a `mgmt_servers` group which directly holds all the required host information. no sub-groups defined in this case]
+
+```console
+[Assuming that you are in the user ansible home directory]
+
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/mgmt_r620_deploy_server_role.yml 
+``` 
+
 
 **Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` rack12_r620`**
 
@@ -164,8 +182,3 @@ r60212c3-bmc               : ok=2    changed=1    unreachable=0    failed=0
 r60212c4-bmc               : ok=2    changed=1    unreachable=0    failed=0
 r60212c5-bmc               : ok=2    changed=1    unreachable=0    failed=0
 ```
-
-
-* **To Run on RACK4 R730 servers**
-* **To Run on RACK1 & RACK2 Management servers**
-  

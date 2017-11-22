@@ -87,9 +87,83 @@ please do add them and then change the values appropriately at the OS level.
 * Make sure we are in the user `ansible` home directory. `/home/ansible`
 * The first file we are going to edit is `inventory/hosts_prod`:
   * `vi /home/ansible/inventory/hosts_prod` : This is the file which holds all the inventory information of the servers in all the racks. It is divided into 620, 730 server groups and further divided into sub groups based on the racks.
-  * Please enter the information in the following order : `<DNS NAME FOR IDRAC> ansible_host=<IP ADDRESS of idrachost1> idrac_racname=<idrachost1 name from DNS> model=<idrachost1 SERVER MODEL>`.
-  
-* **To Run on RACK3 R620 servers**
+  * Please enter the information in the following order : `<DNS NAME FOR IDRAC> ansible_host=<IP ADDRESS of idrachost1> idrac_racname=<idrachost1 name from DNS> model=<idrachost1 SERVER MODEL>`.                          
+* Replace all the lines in the `/home/ansible/inventory/hosts_prod` which contains ` catalog_http_share=<IP ADDRESS of THE VM>/Dell_Repo/R620_R730_072017 `
+  * Replace `<IP ADDRESS of THE VM>` with IP ADDRESS assigned with the VM (HTTP server should be up and running on the same VM).
+* Please also the value of the `ansible_ssh_password=<custom password>` with the iDrac password . `default password is : calvin`. 
+
+**Once we are done with updating the `../inventory/hosts_prod/`, we are ready to execute the playbooks on the hosts. [Make sure you can ping them from the deployed VM ].**
+
+* **To Run on RACK3 R620 servers ::** 
+```console
+
+[Assuming that you are in the user ansible home directory]
+
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts_prod playbooks/r620_deploy_server_role.yml -l rack3_r620
+-i  -> for the hosts inventory information file.
+-l -> to limit the playbook to run only on the mentioned host group.
+
+After you run the playbook on hostgroup “rack3_r620”, you will see the Play being 
+run by ansible along with the tasks and once is finished it will list the play recap 
+status about the hosts. (ok means success, failed means issue in running a task on that 
+hosts and unreachable means ansible unable to SSH into that host.) 
+```
+
+**Below is a sample run of a playbook (which gets the IP address assigned to iDrac using RACADM) on the host group ` rack12_r620`**
+
+```yaml
+[ansible@vcnms-lab-linux ~]$ ansible-playbook -i inventory/hosts1 playbooks/racadm_getsysinfo.yml -l rack12_r620
+
+PLAY [get sys info.] ****************************************************************************************************************************************************************************************************************
+
+TASK [get sys info] *****************************************************************************************************************************************************************************************************************
+changed: [r60212c5-bmc]
+changed: [r60212c4-bmc]
+changed: [r60212c1-bmc]
+changed: [r60212c2-bmc]
+changed: [r60212c3-bmc]
+
+TASK [debug] ************************************************************************************************************************************************************************************************************************
+ok: [r60212c2-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.30"
+    ]
+}
+ok: [r60212c1-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.29"
+    ]
+}
+ok: [r60212c3-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.31"
+    ]
+}
+ok: [r60212c4-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.32"
+    ]
+}
+ok: [r60212c5-bmc] => {
+    "sysinfo.stdout_lines": [
+        "[Key=iDRAC.Embedded.1#IPv4.1]",
+        "Address=10.231.9.33"
+    ]
+}
+
+PLAY RECAP **************************************************************************************************************************************************************************************************************************
+r60212c1-bmc               : ok=2    changed=1    unreachable=0    failed=0
+r60212c2-bmc               : ok=2    changed=1    unreachable=0    failed=0
+r60212c3-bmc               : ok=2    changed=1    unreachable=0    failed=0
+r60212c4-bmc               : ok=2    changed=1    unreachable=0    failed=0
+r60212c5-bmc               : ok=2    changed=1    unreachable=0    failed=0
+```
+
+
 * **To Run on RACK4 R730 servers**
 * **To Run on RACK1 & RACK2 Management servers**
   

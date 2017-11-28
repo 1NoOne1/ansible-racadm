@@ -6,8 +6,8 @@ that is required for ansible program under user `ansible` home directory `/home/
 
 ### Setup the VM in vCenter using OVF Template:
 **If you are using stand-alone vSphere Client application, we can deploy VM as follows:**
-* Open vCenter Clieent Application, Enter the credntials and into it.
-* Click on `File -> Deploy OVF Template`. In the Deploy OVF Template dilaog, choose the appropriate `Source file, Name of the VM and 
+* Open vCenter Client Application, Enter the credentials and into it.
+* Click on `File -> Deploy OVF Template`. In the Deploy OVF Template dialog, choose the appropriate `Source file, Name of the VM and 
 Host/Cluster/Resource pool` on which the VM should be deployed.
 * Once the template is deployed, 
   * `Go to VMs and Templates -> to the appropriate location of the VM (selected in the above step)`, 
